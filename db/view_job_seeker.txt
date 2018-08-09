@@ -1,0 +1,17 @@
+CREATE view view_job_seeker as 
+
+SELECT 
+js.*,
+d.district_name, d.bn_district_name, 
+u.upazila_name, u.bn_upazila_name, 
+gc.category_name as gc_name, gc.bn_category_name as gcb_name, 
+pc.category_name as pc_name, pc.bn_category_name as pcb_name, 
+sl.position, sl.bn_position
+
+FROM
+tbl_job_seeker as js
+LEFT JOIN tbl_district as d ON js.district_id=d.id
+LEFT JOIN tbl_upazila as u ON js.upazila_id=u.id
+LEFT JOIN tbl_general_category as gc ON js.general_category_id=gc.id
+LEFT JOIN tbl_professional_category as pc ON js.professional_category_id=pc.id
+LEFT JOIN tbl_skill_level as sl ON js.skill_level_id=sl.id
